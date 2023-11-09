@@ -1,0 +1,14 @@
+#publicidad1{
+    width: 426px;
+    height: 622px;
+    background-image: url(../image2/publicidaddoritos.jpeg);
+}
+#publicidad2{
+    width: 1200x;
+    height: 660px;
+    background-image: url(../image2/publicidad2.jpeg);
+}
+body{
+    margin-left: 0px;
+    margin-top: 0px;
+}
