@@ -2,13 +2,25 @@
     width: 426px;
     height: 622px;
     background-image: url(../image2/publicidaddoritos.jpeg);
+    position: fixed;
+    margin-left: 855px;
+    margin-top: -122px;
 }
 #publicidad2{
-    width: 1200x;
-    height: 660px;
-    background-image: url(../image2/publicidad2.jpeg);
+    width: 1290px;
+    height: 100px;
+    background-image: url(../image2/banner.png);
 }
 body{
     margin-left: 0px;
     margin-top: 0px;
+}
+#enlaces{
+    width: 10%;
+    height: 80%;
+    background-color: blue;
+    position: absolute;
+}
+#texto{
+    
 }
