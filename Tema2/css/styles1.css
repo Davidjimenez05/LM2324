@@ -3,13 +3,18 @@ del ejeicio 1 CSS Flexbos del
 modelo de examen*/
 body{
 font-family: 'Trebuchet MS', 'Geneva', sans-serif;
+margin: 0;
 background: url('../image2/bg.jpg') no-repeat center center fixed;
 background-size: cover;/*Para que cubra toda la pantalla*/
 }
 p::first-letter{ /* Agrandar primera letra de párrafo*/
-    font-size: 200%;
+    font-size: 1rem;
     font-weight: bold;
     color: #4c3803;
+}
+article, aside, footer, header{
+    padding: 1rem; /*Busca 1rem*/
+    box-sizing: border-box; /*https://www.w3schools.com/css/css3_box-sizing.asp*/
 }
 header{/* Estilo del encbezado */
     background-color: #b28306;
@@ -17,7 +22,7 @@ header{/* Estilo del encbezado */
     text-align: center;
     border-radius: 20px;
     border-bottom: 1px solid;
-    padding: 1rem; /*Busca que es 1 rem*/
+    order: 1;
 }
 aside{/*Estilo lateral*/
     background-color: #b28306;
@@ -26,6 +31,7 @@ aside{/*Estilo lateral*/
 }
 nav{/*Barra de navegacion (menu para amigos)*/
     display: flex;
+    order: 2;
     background-color: #ebcd7c;
     border-radius: 20px;
     padding: 5px 0px;
@@ -61,16 +67,24 @@ el tamaño de la pantalla sea superior a 480px */
     }
     main{
         display: flex;
+        order: 2;
         flex-wrap: wrap;
+        box-sizing: border-box;
         border-bottom: 0.5rem solid;
     }
-    nav,header{
-        order: -1;
+    nav{
+        order: 3;
+    }
+    header{
+        order: 1;
     }
     article{
         flex: 75%;
     }
     aside{
         flex: 25%;
+    }
+    footer{
+        order: 4;
     }
 }
