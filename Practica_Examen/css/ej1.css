@@ -9,31 +9,23 @@ p::first-letter{
     color: black;
     font-weight: bold;
 }
-header{
+#contenedorpadre{
+    display: flex;
+}
+#encabezado{
     background-color: #ffd100;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     text-align: center;
     padding: 1px;
 }
-footer{
+#footer{
     background-color: #ffd100;
     text-align: center;
+    flex-wrap: wrap;
 }
-main{
-    background-color: #f2f2f2;
-    overflow: auto;
-}
-#foto1{
-    border-radius: 10px;
+#aside{
     padding: 10px;
-    width: 100%;
-}
-#aside2, aside, main{
-    display: flex;
-    justify-content: space-between;
-}
-#aside2, aside{
-    background-color: #970043;
-    align-items: center;
+    background-color:#970043;
+
 }

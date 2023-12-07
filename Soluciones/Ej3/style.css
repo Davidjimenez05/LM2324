@@ -1,0 +1,63 @@
+body{
+    min-height: 100vh;
+    margin: 0%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.1em;
+}
+*{
+    box-sizing: border-box;
+}
+.padre{
+    display: flex;
+}
+.Encabezado{
+    background-color: darkgray;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    margin: 20px;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+    font-size: 200%;
+}
+p::first-letter{
+    font-size: 1.5rem;
+    color: darkgray;
+
+}
+.footer{
+    background-color: darkgoldenrod;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+}
+.nav{
+
+    background-color: darkcyan;
+    width: 15em;
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 20px;
+    margin: 20px;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+    
+}
+.texto{
+    width: auto;
+    background-color: darkolivegreen;
+    padding: 20px;
+    margin: 20px;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+
+}
+#foto{
+    border: 5px goldenrod solid;
+    border-image: url(foto.jpg) 5px;
+    border-radius: 2vh;
+    max-width: 100%;
+}
