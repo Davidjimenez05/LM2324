@@ -27,11 +27,7 @@
     }
     
     /* Create three unequal columns that sits next to each other */
-    .column {
-      padding: 10px;
-      background-color:#970043;
-    }
-  
+
     /* Columnas laterales */
     .column.side {
        flex: 1;
