@@ -39,9 +39,9 @@
     <p id="texto"></p>
     <script>
         function cargarPagina(){
-            var visitas = localStorage.getItem("ultimafechaHora");
+            var visitas = localStorage.getItem("ultimaFechaHora");
             var hoy = new Date();
-            var ahora = hoy.toLocaleDateString();
+            var ahora = hoy.toLocaleString();
             if(visitas!=null){
 
                 // Se conecto alguna vez
