@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llados Fitness by Chicote</title>
+</head>
+<style>
+    body{
+        align-items: center;
+        text-align: center;
+    }
+    img{
+       width: 50%;
+       height: 50%; 
+    }
+</style>
+<body>
+    <h1>Bienvenido a Fitness Llados Burpees</h1>
+    <h2>Contamos con nuestros expertos en peso
+        Marcos y Ivan aqui se ven:
+    </h2>
+    <img src="images/chicote.jpg" alt="">
+    <p>Veamos tu peso</p>
+    <p id="texto"></p>
+    <input type="number" name="" id="peso" placeholder="Apunta tu Peso Aquí">
+    <button onclick="guardar()">Guardar</button>
+    <script>
+        function guardar(){}
+
+            function local(){
+            var numero = localStorage.getItem("peso");
+        }
+            function cargarDatos(){
+            
+            if(numero!=null){
+
+                // Se conecto alguna vez
+            document.getElementById("texto").innerHTML="La ultima vez que se peso tenia"+numero;
+            }
+            else{
+
+                // Es la primera vez que se conecta
+            document.getElementById("texto").innerHTML="Hasta ahora mismo, nunca ha puesto su peso"+numero;
+            }
+        }
+        
+    </script>
+</body>
+</html>
