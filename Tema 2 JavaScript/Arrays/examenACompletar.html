@@ -22,11 +22,12 @@
     </tr>
   </table>
   <script type="text/javascript">
-      var preferencias = { 
-        fuente: "Times New Roman" ,
-        tamano: 100,
-        color: "#000"
-    };
+      var preferencias = {
+              fuente: "Times New Roman",
+              tamano: 100, // Numero
+              color: "#000"
+              };
+  
       function aumenta(){
         preferencias.tamano+=25;
         document.getElementById("parrafo").style.fontSize = preferencias.tamano+"%"; // aumentamos un 25% el tamaño
@@ -45,25 +46,21 @@
       }
       function guardar(){
         localStorage.setItem("preferencias", JSON.stringify(preferencias));
-       // localStorage.setItem("tamaño", tamano);
-       // localStorage.setItem("fuente", document.getElementById("parrafo").style.fontFamily)
-       // localStorage.setItem("color", document.getElementById("parrafo").style.color)
+        //localStorage.setItem("tamaño", tamano);
+        //localStorage.setItem("fuente", document.getElementById("parrafo").style.fontFamily );
+        //localStorage.setItem("color", document.getElementById("parrafo").style.color);
       }
       function cargarDatos(){
-        var objeto = localStorage.getItem("preferencias")
-        if(objeto!=null){
-        preferencias = JSON.parse(objeto);
-        document.getElementById("parrafo").style.color = preferencias.color;
-        document.getElementById("parrafo").style.fontFamily = preferencias.fuente;
-        document.getElementById("parrafo").style.fontSize = preferencias.tamano+"%";
+        var cadena = localStorage.getItem("preferencias")
+        if (cadena!=null){
+          preferencias = JSON.parse(cadena); // Convierte cadena a objeto
+          document.getElementById("parrafo").style.color = preferencias.color;
+          document.getElementById("parrafo").style.fontFamily = preferencias.fuente;
+          document.getElementById("parrafo").style.fontSize = preferencias.tamano + "%";
+        }
+       
       }
-      else{
-        preferencias.tamano = 100;
-        preferencias.fuente = "Times New Roman";
-        preferencias.color = "#000";
-      }
-    }
-      window.onload = cargarDatos(); //No  va a funcionar si no llamamos a cargarDatos
+      window.onload = cargarDatos(); // No va a funcionar si no llamamos a cargarDatos
   </script>
   </body>
 </html>
