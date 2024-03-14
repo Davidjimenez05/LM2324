@@ -47,7 +47,7 @@ function refrescar(){
             let nodo = document.createElement("li"); // Creamos un nuevo elemento lista
             let texto = document.createTextNode("Producto: " + producto['titulo']+" Unidades:"+producto['uds']+" Precio ud:"+producto['precio']);
             document.getElementById("id"+i).value = producto['uds'];
-            nodo.innerHTML = texto.textContent // Añadimos el texto
+            nodo.innerHTML = texto.textContent // Añadimos el texto nodo.appendChild = texto.textcontent
             listaCarrito.appendChild(nodo);
             total = total + producto['uds']*producto['precio'];
         }
