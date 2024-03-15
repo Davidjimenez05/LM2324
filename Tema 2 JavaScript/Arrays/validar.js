@@ -62,7 +62,7 @@ function validarDNI(){
     if (letraUsuario!=letraReal) // Si no coincide letras es falso
         dniValido = false;
     return dniValido;
-}
+} 
 
 function ceroespacios(){
     dni.addEventListener("keyup",e=>{
