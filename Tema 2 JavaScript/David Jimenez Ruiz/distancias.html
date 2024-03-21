@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etapas Viaje</title>
+</head>
+<body>
+    <h1>Calculadora de distancia</h1>
+    
+    <input type="number" id="numero" placeholder="100,200,500">
+    <button onclick="calcular()">Calcula</button>
+
+    <script>
+        var Numeros = []
+
+function calcular() {
+        var numero = parseFloat(document.getElementById("numero").value);
+        Numeros.push(numero);
+        var s = 0
+        for (var i = 0 ; i< Numeros.length; i++) {
+        s += Numeros[i];
+        }
+        alert('La distancica es de ' + s)
+        
+    }
+
+function dividirCadena(Numeros, numero) {
+  var arrayDeCadenas = Numeros.split(numero);
+  for (var i = 0; i < Numeros.length; i++) {
+    document.write(Numeros[i] + ",");
+  }
+}
+
+
+    </script>
+
+</body>
+</html>

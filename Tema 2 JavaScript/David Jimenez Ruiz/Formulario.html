@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        .error{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    
+        <label for="">Nombre:</label><input id="nombre" type="text"><span class="error" id="campo1"></span><br>
+        <label for="">Apellidos:</label><input id="apellidos" type="text"><span class="error" id="campo2"></span><br>
+        <label for="">Email:</label><input id="email" type="email"><span class="error" id="campo3"></span><br>
+        <label for="">Contraseña:</label><input id="password1" type="password" name=""><span class="error" id="campo4"></span><br>
+        <label for="">Repite contraseña:</label><input id="password2" type="password" name=""><span class="error" id="campo5"></span><br>
+        <label for="">DNI:</label><input id="dni" type="text" onclick="ceroespacios()"><span class="error" id="campo6"></span><br>
+        <label for="">Introduce tu fecha de nacimiento</label><input id="fecha" type="date" value="off"><span class="error" id="campo7"></span><br>
+        <label for="">Tengo 18 años o mas</label><input id="edad" type="checkbox" value="on"><span class="error" id="campo8"></span><br>
+        <label for="">¿Guardar?</label><input type="checkbox" value="guardar" id="guarda"><br>
+        <button onclick="validar(document.getElementsByTagName('input'))">Guardar</button>
+
+    <script>
+
+function validar(elementos){
+    let estanCorrectos = true;
+    for (var i=0;i<elementos.length;i++){
+        document.getElementById("campo"+(i+1).toString()).innerHTML = "";       
+        if (elementos[i].value == "" || (i==7 && !elementos[i].checked)){
+            
+            document.getElementById("campo"+(i+1).toString()).innerHTML = "El campo " + elementos[i].id + " está vacío";
+            estanCorrectos = false;
+
+        }
+        
+    }
+    if (estanCorrectos == true){
+        alert('Usuario registrado con exito');
+    }
+    if (!validarEmail()){
+        document.getElementById("campo3").innerHTML = "Email no válido";        
+        estanCorrectos = false;
+    }
+    if (!validaPasswords()){
+        document.getElementById("campo4").innerHTML = "La contraseña no cumple con requisitos de longitud o no coinciden";        
+        document.getElementById("campo5").innerHTML = "La contraseña no cumple con requisitos de longitud o no coinciden";
+        estanCorrectos = false;
+    }
+    if (!validarDNI()){
+        document.getElementById("campo6").innerHTML = "DNI no válido (12345678X)";
+        estanCorrectos = false;
+    }
+    return estanCorrectos;
+}
+function validarEmail(){              
+	var valido;
+	var emailField = document.getElementById('email');
+	var validEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+	if( validEmail.test(emailField.value) ){
+		valido=true;
+	}else{
+        valido=false;
+	}
+    return valido;
+} 
+function validaPasswords(){
+    let clave1 = document.getElementById("password1").value;
+    let clave2 = document.getElementById("password2").value;
+    let passwordsOK = true;
+    if (clave1.length<8 || (clave1!=clave2))
+        passwordsOK = false;
+    return passwordsOK;
+}
+
+
+
+
+
+function validarDNI(){
+    var letra=['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'];
+    var cadena = document.getElementById("dni").value;
+    var numero = parseInt(cadena.substring(0,8));
+    var letraUsuario = cadena[8].toUpperCase();
+    var letraReal = letra[numero%23]; 
+    var dniValido =true;
+    if (letraUsuario!=letraReal) 
+        dniValido = false;
+    return dniValido;
+} 
+
+function ceroespacios(){
+    dni.addEventListener("keyup",e=>{
+        let string = e.target.value
+        e.target.value = string.trim();
+    
+    })
+}
+
+
+
+    </script>
+
+</body>
+</html>
