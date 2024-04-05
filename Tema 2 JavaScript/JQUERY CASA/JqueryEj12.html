@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio 11</title>
+    <title>Ejercicio 12</title>
     <script src="jquery-3.7.1.js"></script>
     <style>
         div{
@@ -14,19 +14,21 @@
             align-content: center;
             text-align: center;
         }
-
+        .red{
+            color: red;
+        }
     </style>
 </head>
 <body>
     <script>
        $(document).ready(function() { 
     $("button").click(function(){ 
-        $("p").toggle(500); 
+        $("p").toggleClass("red"); 
      }); 
   }); 
         </script>
     <div> <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-        Earum harum, assumenda praesentium nulla quae ea, nisi, quaerat reiciendis quidem ipsum iusto rerum ex voluptatum! Consequatur, sapiente fugit. Porro, qui adipisci.</p></div>
+        Earum harum, assumenda praesentium nulla quae ea, nisi, quaerat reiciendis quidem ipsum iusto rerum ex voluptatum! Consequatur, sapiente fugit. qui adipisci.</p></div>
 
         <button id="button">Mostrar/Ocultar</button>
 </body>
