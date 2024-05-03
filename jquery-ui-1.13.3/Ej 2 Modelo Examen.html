@@ -62,14 +62,35 @@
             <input type="number" name="codLibro" id="codLibro" min="1">
             <br>
             <label for="botones">Acción:</label>
-            <button id="btn-libro">Obtener libro</button>
-            <button id="btn-todos">Ver todos</button>
+            <button id="btn-libro">Consultar libro por ID</button>
+            <button id="btn-todos">Ver Catálogo</button>
             <div id="resultados">
                 <!-- Aqui cargaremos los resultados-->
             </div>
         </div>
     </div>
     <script>
+
+        $(document).ready(function () {
+            $("#btn-libro").click(function(){
+                let codlibro = $("#codLibro").val();
+                if (codlibro!=""){
+                    // El usuario habia escrito algo
+                    $.get("https://gutendex.com/books"+codlibro).done(function(respuesta){
+                        console.log(respuesta);
+                        $("resultados").append("<p>"+respuesta.title+"</p>");
+                        $("resultados").append("<p>"+respuesta.authors[0].name+"</p>");
+                        $("resultados").append("img src='"+respuesta.formats['img/jpeg']+"'>");
+                    
+                    }).fail(function(){
+                        
+                    })}
+        });
+
+            $("#btn-todos").click(function(){
+
+            })
+        });
 
 $.ajax({
             url: 'https://gutendex.com/books/',
