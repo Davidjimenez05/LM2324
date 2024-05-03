@@ -80,10 +80,10 @@
                         console.log(respuesta);
                         $("resultados").append("<p>"+respuesta.title+"</p>");
                         $("resultados").append("<p>"+respuesta.authors[0].name+"</p>");
-                        $("resultados").append("img src='"+respuesta.formats['img/jpeg']+"'>");
+                        $("resultados").append("img src='"+respuesta.formats['image/jpeg']+"'>");
                     
                     }).fail(function(){
-                        
+
                     })}
         });
 
