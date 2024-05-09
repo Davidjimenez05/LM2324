@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejersisio 1</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <style>
+        img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>API UNSPLASH</h1>
+    <div>
+        <img src="" alt="" id="foto">
+        <p id="resultado"></p>
+        <button id="calcular">calcular</button>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $("#calcular").click(function(){
+        var apiKey = '3_vVCoD0O6XPiTF--NAwhVonjd3gd3WvkLzqPwxMtrE';
+        $.ajax({
+          url: 'https://api.unsplash.com/photos/random?client_id='+ apiKey,
+          type: 'GET',
+          success: function(response){
+            var imagen = response.urls.regular;
+            $("#foto").attr("src",imagen);
+          },
+          error: function(error){
+            $("#resultado").text("Error al obtener la foto: " + error);
+          }
+        });
+      });
+    });
+    </script>
+</body>
+</html>
