@@ -149,8 +149,13 @@
                 }
                 else{
                     for(let i=0; i<miarray.length; i++){
-                        $(".carrito")[i].is
+                        if(miarray[i].checked){
+                            portatiles +=15;
+                        }
+
                     }
+                    $("#diaReserva").text("Reserva el "+fecha+ " de " + hora + "horas.");
+                    $("#totalPortatiles").text("Nº Portatiles: "+ portatiles);
                 }
          
         
