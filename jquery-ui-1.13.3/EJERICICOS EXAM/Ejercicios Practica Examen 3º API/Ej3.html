@@ -33,6 +33,7 @@
             let informacion = response.Plot;
             let actores = response.Actors;
             let idioma = response.Language;
+            let foto = response.Poster;
             $("#resultado").append("<p>"+"Titulo: "+pelicula+"</p>");
             if (informacion != "N/A"){
               $("#resultado").append("<p>"+"Resumen: "+informacion+"</p>");
@@ -42,7 +43,7 @@
             };
             $("#resultado").append("<p>"+"Actores: "+actores+"</p>");
             $("#resultado").append("<p>"+"Idioma: "+idioma+"</p>");
-          
+            $("#resultado").append("<img src='"+foto+"'>");
           }},
           error: function(xhr, status, error){
             $("#resultado").append("<p>"+"Error al procesar la solicitud: "+error+"</p>");
