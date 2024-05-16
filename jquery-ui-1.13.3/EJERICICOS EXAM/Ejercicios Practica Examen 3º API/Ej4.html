@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejersisio 4</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <style>
+        img{
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Ejercicio 4 Ususarios GIT HUB</h1>
+    <div>
+        <label for="">Introduzca el Nombre de Usuario</label><input type="text" id="usuario">
+        <div id="resultado"></div><br>
+        <button id="mostrar">Mostrar</button>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $("#mostrar").click(function(){
+        $("#resultado").empty();
+        var usu = $("#usuario").val();
+        $.ajax({
+          url: 'https://api.github.com/users/'+ usu,
+          type: 'GET',
+          success: function(response){
+            let usuario = response.login;
+            let avatar = response.avatar_url;
+            let identificador = response.id;
+            let repositorios = response.public_repos;
+            let seguidores = response.followers;
+            let creado = response.created_at;
+            $("#resultado").append("<p>"+ "Usuario: "+ usuario +"</p>");
+            $("#resultado").append("<p>"+ "<img src="+ avatar+ ">" +"</p>");
+            $("#resultado").append("<p>"+ "Identificador: "+ identificador +"</p>");
+            $("#resultado").append("<p>"+ "Repositorios Publicos: "+ repositorios +"</p>");
+            $("#resultado").append("<p>"+ "Seguidores: "+ seguidores +"</p>");
+            $("#resultado").append("<p>"+ "Fue creado: "+ creado +"</p>");
+          },
+          error: function(error){
+            $("#resultado").append("<p>"+"Error al obtener el usuario; " + error.responseJSON.message+"</p>");
+          }
+        });
+      });
+    });
+    </script>
+</body>
+</html>

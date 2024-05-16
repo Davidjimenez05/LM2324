@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejersisio 1</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
+<body>
+    <h1>Temperatura</h1>
+    <div>
+        <label for="">Introduzca la ciudad de la que quiere saber la temperatura</label>
+        <input type="text" id="ciudad">
+        <p id="resultado"></p>
+        <button id="calcular">Enviar</button>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $("#calcular").click(function(){
+        var apiKey = '21acf2341d296ddd07c04e4b9e14b1c3';
+        var ciudad = $("#ciudad").val();
+        $.ajax({
+          url: 'http://api.openweathermap.org/data/2.5/weather?q='+ ciudad +'&appid=' + apiKey + '&units=metric',
+          type: 'GET',
+          success: function(response){
+            var temperature = response.main.temp;
+            $("#resultado").text("La temperatura en "+ ciudad +" es " + temperature + "°C.");
+          },
+          error: function(error){
+            $("#resultado").text("Error al obtener la temperatura: " + error.responseJSON.cod);
+          }
+        });
+      });
+    });
+    </script>
+</body>
+</html>

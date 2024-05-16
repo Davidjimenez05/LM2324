@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejersisio 3</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
+<body>
+    <h1>API PELICULAS</h1>
+    <div>
+        <input type="text" id="pelicula">
+        <div id="resultado"></div><br>
+        <button id="mostrar">Mostrar</button>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $("#mostrar").click(function(){
+        $("#resultado").empty();
+        var apiKey = '85ac5bfa';
+        var titulo = $("#pelicula").val();
+        $.ajax({
+          url: 'http://www.omdbapi.com/?apikey='+ apiKey +'&t='+ titulo,
+          type: 'GET',
+          success: function(response){
+            if (response.Response === "False") {
+            $("#resultado").append("<p>"+"Película NO ENCONTRADA: "+response.Error+"</p>"); }
+            else{
+            let pelicula = response.Title;
+            let informacion = response.Plot;
+            let actores = response.Actors;
+            let idioma = response.Language;
+            $("#resultado").append("<p>"+"Titulo: "+pelicula+"</p>");
+            if (informacion != "N/A"){
+              $("#resultado").append("<p>"+"Resumen: "+informacion+"</p>");
+            }
+            else{
+              $("#resultado").append("<p>"+"Resumen: Por ahora esta pelicula no cuenta con un resumen "+informacion+"</p>");
+            };
+            $("#resultado").append("<p>"+"Actores: "+actores+"</p>");
+            $("#resultado").append("<p>"+"Idioma: "+idioma+"</p>");
+          
+          }},
+          error: function(xhr, status, error){
+            $("#resultado").append("<p>"+"Error al procesar la solicitud: "+error+"</p>");
+          }
+        });
+      });
+    });
+    </script>
+</body>
+</html>

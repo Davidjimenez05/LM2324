@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejersisio 6</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <style>
+        img{
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Ejercicio 6 Fotos de Texto</h1>
+    <div>
+        <label for="">Introduzca el Titulo de la imagen: </label><input type="text" id="titulo">
+        <button id="idtitulo">Buscar</button>
+        <div id="resultado"></div><br>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $("#idtitulo").click(function(){
+        $("#resultado").empty();
+        var apiKey = '2add90fec6aa43bf3ecf767057c42080';
+        var tit = $("#titulo").val();
+        $.ajax({
+          url: 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key='+apiKey+'&text='+tit+'&format=json&nojsoncallback=1',
+          type: 'GET',
+          success: function(response){
+            console.log(response);
+            let num_fotos = response.photos.photo.length;
+            for (let i=0; i<num_fotos; i++){
+            let respuesta = new Object(response.photos.photo[i]);
+            let farm = respuesta.farm;
+            let server = respuesta.server;
+            let id = respuesta.id;
+            let secret = respuesta.secret;
+            let imagen = "https://farm"+ farm +".staticflickr.com/"+ server +"/"+ id +"_"+ secret +".jpg"
+            $("#resultado").append("<p>"+ "<img src="+ imagen+ ">" +"</p>");
+          }},
+          error: function(error){
+            $("#resultado").append("<p>"+"Error al obtener la imagen; " + error+"</p>");
+          }
+        });
+      });
+    });
+    </script>
+</body>
+</html>

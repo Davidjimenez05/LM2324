@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejersisio 5</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <style>
+        img{
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Ejercicio 5 Libros</h1>
+    <div>
+        <label for="">Introduzca el Titulo del Libro: </label><input type="text" id="titulo">
+        <button id="idtitulo">Buscar</button>
+        <div id="resultado"></div><br>
+    </div>
+    <script>
+    $(document).ready(function(){
+        $("#idtitulo").click(function(){
+        $("#resultado").empty();
+        var apiKey = 'AIzaSyBsnMFjIVFfTts7VkKoaK94YrPIw_BJQDw';
+        var tit = $("#titulo").val();
+        $.ajax({
+          url: 'https://www.googleapis.com/books/v1/volumes?q=intitle:'+tit+'&key='+ apiKey,
+          type: 'GET',
+          success: function(response){
+            console.log(response);
+            let num_libros = response.items.length;
+            for (let i=0; i<num_libros; i++){
+            let respuesta = new Object(response.items[i]);
+            let titulo = respuesta.volumeInfo.title;
+            let autores = respuesta.volumeInfo.authors[0];
+            let descripcion = respuesta.volumeInfo.description;
+            let pagina = respuesta.volumeInfo.pageCount;
+            let imagen = respuesta.volumeInfo.imageLinks.smallThumbnail;
+            $("#resultado").append("<p>"+ "Titulo: "+ titulo +"</p>");
+            $("#resultado").append("<p>"+ "<img src="+ imagen+ ">" +"</p>");
+            $("#resultado").append("<p>"+ "Autores: "+ autores +"</p>");
+            $("#resultado").append("<p>"+ "Descripción: "+ descripcion +"</p>");
+            $("#resultado").append("<p>"+ "Páginas: "+ pagina +"</p>");
+          }},
+          error: function(error){
+            $("#resultado").append("<p>"+"Error al obtener el Libro; " + error+"</p>");
+          }
+        });
+      });
+    });
+    </script>
+</body>
+</html>

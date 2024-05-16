@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar formulario con jQuery</title>
+    <style>
+        input {
+            margin: 5px 5px;
+        }
+        span {
+            color:red;
+        }
+    </style>
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <input type="text" placeholder="Nombre" id="nombre" required><span id="errorNombre"></span><br>
+    <input type="text" placeholder="Apellido 1" id="apellido1" required><span id="errorApellido1"></span><br>
+    <input type="text" placeholder="Apellido 2" id="apellido2" required><span id="errorApellido2"></span><br>
+    <input type="email" name="" id="correo" placeholder="Email" required><span id="errorCorreo"></span><br>
+    <input type="date" name="" id="fnac"><br>
+    <input type="text" name="" id="dni" placeholder="DNI:123456789X" required><span id="errorDNI"></span><br>
+    <input type="password" name="" id="password1" placeholder="Contraseña" required><span id="errorContra1"></span><br>
+    <input type="password" name="" id="password2" placeholder="Repite Contraseña" required><span id="errorContra2"></span><br>
+    <textarea name="" id="descripcion">Descripción</textarea><span></span><br>
+    <input type="checkbox" name="" id="privacidad" required><label for="">Acepta tratamiento de datos</label><span id="errorPrivacidad"></span><br>
+    <button>Registrarse</button>
+    <p id="usu"></p>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function(){
+                let patronEmail =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+                let patronContraseña = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%-_*?&])([A-Za-z\d$@$!%-_*?&]|[^ ]){8,}$/;
+                let nombre = $("#nombre").val();
+                let apellido1 = $("#apellido1").val();
+                let apellido2 = $("#apellido2").val();
+                let correo = $("#correo").val();
+                let contra1 = $("#password1").val();
+                let contra2 = $("#password2").val();
+                let privacidad = $("#privacidad").is(":checked");
+                let letra = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'];
+                var cadena = $("#dni").val(); //DNI COMPLETO           
+                let cadenaSinEspacios = cadena.replace(/ /g, "");           
+                let cadenaLimpia = cadenaSinEspacios.toUpperCase();
+                var numero = parseInt(cadenaLimpia.substring(0,8));
+                var letraUsuario = cadena[8];//Letra escrita por el usuario
+                var letraReal = letra[numero%23];//Letra real del DNI calculada segun la formula
+                let Lnombre = nombre.substring(0,1);
+                let Lapellido1 = apellido1.substring(0,3);
+                let Lapellido2 = apellido2.substring(0,3);
+                let LDNI = cadena.substring(6,9);
+
+                if (nombre==""){
+                    $("#errorNombre").text("Rellenar el campo nombre");
+                }
+                else {
+                    $("#errorNombre").text(""); 
+                }
+                if (apellido1 == "")
+                {
+                    $("#errorApellido1").text("Rellenar el campo apellido 1");
+                }
+                else{
+                    $("#errorApellido1").text("");
+                }
+                if (apellido2 == "")
+                {
+                    $("#errorApellido2").text("Rellenar el campo apellido 2");
+                }
+                else{
+                    $("#errorApellido2").text("");
+                }
+                if (correo=="")
+                {
+                    $("#errorCorreo").text("Rellenar correo electrónico algo@algo.com")
+                }
+                else{
+                    // El correo no es la cadena vacía
+                    if (!patronEmail.test(correo)){
+                        // No encaja con el patron de Email
+                        $("#errorCorreo").text("Formato no válido de correo");
+                    }
+                    else{
+                        $("#errorCorreo").text("");
+                    }
+                }
+                if (contra1!=contra2){
+                    $("#errorContra1").text("Las contraseñas deben coincidir");
+                    $("#errorContra2").text("Las contraseñas deben coincidir");
+                }
+                else{
+                    // Las contraseñas son iguales
+                    if (!patronContraseña.test(contra1)){
+                        $("#errorContra1").text("No cumple con requisitos. Longitud minima 8, incluir mayuscula, minuscula y digito");
+                        $("#errorContra2").text("No cumple con requisitos. Longitud minima 8, incluir mayuscula, minuscula y digito");
+                    }
+                    else{
+                        $("#errorContra1").text("");
+                        $("#errorContra2").text("");
+                    }
+                }
+                if (!privacidad){
+                    $("#errorPrivacidad").text("Debe aceptar los datos personales por parte de nuestra web")
+                }
+                else{
+                    $("#errorPrivacidad").text("")
+                }
+                if($("#dni").val()==''){
+                        $("#errorDNI").text("Rellena este campo");
+                    }else{
+                            $("#errorDNI").text("");  
+                            //Parte numerica
+                           if(numero=='NaN'|| letraUsuario != letraReal){
+                               $("#errorDNI").text("Escriba un DNI verdadero");
+                           }else{
+                               
+                               $("#errorDNI").text("");
+                           }
+                        }
+                    $("#usu").text("El usuario genereado es: "+ Lnombre + Lapellido1 + Lapellido2 + LDNI)
+            })
+        });
+    </script>
+</body>
+</html>
